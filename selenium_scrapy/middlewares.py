@@ -134,6 +134,8 @@ class SeleniumMiddleware:
 
         if request.get_driver_local_storage:
             self.driver.refresh()  # Otherwise will not return right
+            # self.driver.switch_to.new_window('tab') this can be tried
+            # so that every request opens a new tab and then closes it after
             self.driver_local_storage = self.driver.execute_script("return window.localStorage")   
             request.meta.update({'driver_local_storage': self.driver_local_storage})
 
